@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b80442fd996ba4d804e88175cea93e, type: 3}
+  m_Name: gelum
+  m_EditorClassIdentifier: 
+  aspectName: gelum
+  icon: {fileID: 3286163911610860551, guid: 52caca75dbecf1b42baf574b582aa74a, type: 3}
+  parent1: {fileID: 11400000, guid: 1e98f63e21c36e9479b71625e004dcf7, type: 2}
+  parent2: {fileID: 11400000, guid: 53ceb2255c2179440a037350fb3f42ac, type: 2}
