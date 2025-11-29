@@ -386,8 +386,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1209112889}
-  - component: {fileID: 1209112890}
   - component: {fileID: 1209112891}
+  - component: {fileID: 1209112892}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -410,18 +410,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!156049354 &1209112890
-Grid:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1209112888}
-  m_Enabled: 1
-  m_CellSize: {x: 2, y: 2, z: 2}
-  m_CellGap: {x: 0, y: 0, z: 0}
-  m_CellLayout: 1
-  m_CellSwizzle: 0
 --- !u!114 &1209112891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,10 +422,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08de551b4db360f42b5144bd86375511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 1209112890}
   prefab: {fileID: 3573376713040915130, guid: f10acf75e25178a438fda60134e68519, type: 3}
-  radius: 4
-  size: 1.25
+--- !u!114 &1209112892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209112888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6067a9e4e1c9d04c80d2b4c1e281887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aspectDatabase: {fileID: 11400000, guid: 2142e2e62e7bce047b77080ac8197cef, type: 2}
 --- !u!1 &1987201769
 GameObject:
   m_ObjectHideFlags: 0
