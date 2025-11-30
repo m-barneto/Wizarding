@@ -17,39 +17,31 @@ public class PuzzleEditor : MonoBehaviour {
     int aspectSelection = 0;
     string[] aspects;
     Camera cam;
-
-    Dictionary<Vector2Int, HexTile> puzzleTiles;
+    PuzzlePlayer puzzlePlayer;
 
     private void Awake() {
         aspects = aspectDatabase.aspects.Select(x => x.aspectName).ToArray();
         grid = GetComponent<GridController>();
-        GenerateGrid();
+        grid.GenerateGrid(gridSize);
         cam = Camera.main;
-    }
-
-    void GenerateGrid() {
-        List<Vector2Int> tilePositions = HexUtils.GenerateHexRing(gridSize);
-        grid.GenerateTiles(tilePositions);
-        puzzleTiles = grid.hexTileGameObjects;
+        puzzlePlayer = GetComponent<PuzzlePlayer>();
     }
 
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
             HexTile tile = GetTileUnderMouse();
             if (tile) {
-                puzzleTiles[tile.axial].SetAspect(aspectDatabase.aspects[aspectSelection]);
+                if (tile.aspect) {
+                    grid.hexTiles[tile.axial].SetAspect(null);
+                } else {
+                    grid.hexTiles[tile.axial].SetAspect(aspectDatabase.aspects[aspectSelection]);
+                }
             }
         }
         if (Input.GetMouseButtonDown(1)) {
             HexTile tile = GetTileUnderMouse();
             if (tile) {
-                puzzleTiles[tile.axial].SetAspect(null);
-            }
-        }
-        if (Input.GetMouseButtonDown(2)) {
-            HexTile tile = GetTileUnderMouse();
-            if (tile) {
-                puzzleTiles[tile.axial].SetLocked(!tile.locked);
+                grid.hexTiles[tile.axial].SetLocked(!tile.locked);
             }
         }
     }
@@ -71,11 +63,26 @@ public class PuzzleEditor : MonoBehaviour {
         myStyle.contentOffset = new Vector2(15, 15);
         GUILayout.BeginArea(new Rect(0, 0, 300, 600), myStyle);
 
+        if (GUILayout.Button("Open Player")) {
+            this.enabled = false;
+            puzzlePlayer.enabled = true;
+        }
+
         if (GUILayout.Button("Load Puzzle")) {
             puzzle = PuzzleIO.LoadPuzzle();
             // Check if puzzle is null before actually loading into editor
+            grid.LoadPuzzle(puzzle);
         }
         if (GUILayout.Button("Save Puzzle As")) {
+            // Go through the hextiles and add the tiles that have changed to the puzzle
+            puzzle.tiles.Clear();
+            puzzle.gridRadius = gridSize;
+            foreach (var kvpTile in grid.hexTiles) {
+                HexTile tile = kvpTile.Value;
+                if (tile.aspect != null || tile.locked == true) {
+                    puzzle.tiles.Add(tile.TileData());
+                }
+            }
             PuzzleIO.SavePuzzle(puzzle);
         }
 
@@ -84,10 +91,10 @@ public class PuzzleEditor : MonoBehaviour {
         if (gridSize != newGridSize) {
             gridSize = newGridSize;
             // Regenerate the grid
-            GenerateGrid();
+            grid.GenerateGrid(gridSize);
         }
 
-        aspectSelection = GUI.SelectionGrid(new Rect(5, 100, 150, 150), aspectSelection, aspects, 2);
+        aspectSelection = GUI.SelectionGrid(new Rect(10, 150, 280, 300), aspectSelection, aspects, 3);
 
         GUILayout.EndArea();
     }

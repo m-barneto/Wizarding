@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b80442fd996ba4d804e88175cea93e, type: 3}
+  m_Name: instrumentum
+  m_EditorClassIdentifier: 
+  aspectName: instrumentum
+  icon: {fileID: 3286163911610860551, guid: 2d86ea89ed3ec384090ff3efb186dd67, type: 3}
+  parent1: {fileID: 11400000, guid: e6d10f95d7d16dd4abbf216d0f15c735, type: 2}
+  parent2: {fileID: 11400000, guid: 9729931fca4b0464586571ccd171631d, type: 2}

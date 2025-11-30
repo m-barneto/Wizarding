@@ -1,0 +1,59 @@
+{
+    "gridRadius": 2,
+    "tiles": [
+        {
+            "q": -2,
+            "r": 1,
+            "aspectId": "aer",
+            "locked": true
+        },
+        {
+            "q": -1,
+            "r": -1,
+            "aspectId": "aer",
+            "locked": true
+        },
+        {
+            "q": -1,
+            "r": 1,
+            "aspectId": "fames",
+            "locked": true
+        },
+        {
+            "q": -1,
+            "r": 2,
+            "aspectId": "aer",
+            "locked": true
+        },
+        {
+            "q": 0,
+            "r": 0,
+            "aspectId": "empty",
+            "locked": true
+        },
+        {
+            "q": 1,
+            "r": -2,
+            "aspectId": "aer",
+            "locked": true
+        },
+        {
+            "q": 1,
+            "r": 0,
+            "aspectId": "fames",
+            "locked": false
+        },
+        {
+            "q": 1,
+            "r": 1,
+            "aspectId": "aer",
+            "locked": true
+        },
+        {
+            "q": 2,
+            "r": -1,
+            "aspectId": "aer",
+            "locked": true
+        }
+    ]
+}

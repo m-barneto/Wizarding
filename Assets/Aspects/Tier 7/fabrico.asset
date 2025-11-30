@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b80442fd996ba4d804e88175cea93e, type: 3}
+  m_Name: fabrico
+  m_EditorClassIdentifier: 
+  aspectName: fabrico
+  icon: {fileID: 3286163911610860551, guid: ba774a7d44a7e9646b16b1abf07087cc, type: 3}
+  parent1: {fileID: 11400000, guid: e6d10f95d7d16dd4abbf216d0f15c735, type: 2}
+  parent2: {fileID: 11400000, guid: 5ecc23f51274522459d590718132a0e3, type: 2}

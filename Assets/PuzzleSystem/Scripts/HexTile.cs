@@ -29,4 +29,14 @@ public class HexTile : MonoBehaviour {
         this.locked = locked;
         renderer.material = locked ? lockedMaterial : unlockedMaterial;        
     }
+
+    public ResearchPuzzle.TileData TileData() {
+        var tileData = new ResearchPuzzle.TileData() {
+            q = axial.x,
+            r = axial.y,
+            locked = locked,
+            aspectId = aspect ? aspect.aspectName : "empty"
+        };
+        return tileData;
+    }
 }
