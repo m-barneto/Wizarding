@@ -4,9 +4,10 @@ public class HexTile : MonoBehaviour {
     public Vector2Int axial;
     public Aspect aspect;
     public bool locked;
+    public AspectPuzzleGraph graph;
 
     SpriteRenderer spriteRenderer;
-    Renderer renderer;
+    Renderer tileRenderer;
 
     [SerializeField]
     Material lockedMaterial;
@@ -16,7 +17,7 @@ public class HexTile : MonoBehaviour {
 
     private void Awake() {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        renderer = GetComponentInChildren<Renderer>();
+        tileRenderer = GetComponentInChildren<Renderer>();
     }
 
     public void SetAspect(Aspect aspect) {
@@ -27,7 +28,7 @@ public class HexTile : MonoBehaviour {
 
     public void SetLocked(bool locked) {
         this.locked = locked;
-        renderer.material = locked ? lockedMaterial : unlockedMaterial;        
+        tileRenderer.material = locked ? lockedMaterial : unlockedMaterial;        
     }
 
     public ResearchPuzzle.TileData TileData() {
@@ -38,5 +39,9 @@ public class HexTile : MonoBehaviour {
             aspectId = aspect ? aspect.aspectName : "empty"
         };
         return tileData;
+    }
+
+    public override string ToString() {
+        return $"Aspect: {aspect?.aspectName}\nIsLocked: {locked}";
     }
 }

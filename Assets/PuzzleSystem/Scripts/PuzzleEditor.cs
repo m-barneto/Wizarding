@@ -8,19 +8,13 @@ using UnityEditor;
 using UnityEngine;
 
 public class PuzzleEditor : MonoBehaviour {
-    [SerializeField]
-    AspectDatabase aspectDatabase;
-
     ResearchPuzzle puzzle = null;
     GridController grid;
     int gridSize = 4;
-    int aspectSelection = 0;
-    string[] aspects;
     Camera cam;
     PuzzlePlayer puzzlePlayer;
 
     private void Awake() {
-        aspects = aspectDatabase.aspects.Select(x => x.aspectName).ToArray();
         grid = GetComponent<GridController>();
         grid.GenerateGrid(gridSize);
         cam = Camera.main;
@@ -34,7 +28,7 @@ public class PuzzleEditor : MonoBehaviour {
                 if (tile.aspect) {
                     grid.hexTiles[tile.axial].SetAspect(null);
                 } else {
-                    grid.hexTiles[tile.axial].SetAspect(aspectDatabase.aspects[aspectSelection]);
+                    grid.hexTiles[tile.axial].SetAspect(AspectGrid.Instance.GetSelectedAspect());
                 }
             }
         }
@@ -58,22 +52,24 @@ public class PuzzleEditor : MonoBehaviour {
     }
 
     private void OnGUI() {
-        // create a style based on the default label style
         GUIStyle myStyle = new GUIStyle(GUI.skin.button);
         myStyle.contentOffset = new Vector2(15, 15);
-        GUILayout.BeginArea(new Rect(0, 0, 300, 600), myStyle);
+        GUILayout.BeginArea(new Rect(0, 0, 425, 800), myStyle);
 
-        if (GUILayout.Button("Open Player")) {
+        GUIStyle buttonStyle = new GUIStyle(GUI.skin.button);
+        buttonStyle.fontSize = 24;
+
+        if (GUILayout.Button("Open Player", buttonStyle)) {
             this.enabled = false;
             puzzlePlayer.enabled = true;
         }
 
-        if (GUILayout.Button("Load Puzzle")) {
+        if (GUILayout.Button("Load Puzzle", buttonStyle)) {
             puzzle = PuzzleIO.LoadPuzzle();
             // Check if puzzle is null before actually loading into editor
             grid.LoadPuzzle(puzzle);
         }
-        if (GUILayout.Button("Save Puzzle As")) {
+        if (GUILayout.Button("Save Puzzle As", buttonStyle)) {
             // Go through the hextiles and add the tiles that have changed to the puzzle
             puzzle.tiles.Clear();
             puzzle.gridRadius = gridSize;
@@ -86,7 +82,7 @@ public class PuzzleEditor : MonoBehaviour {
             PuzzleIO.SavePuzzle(puzzle);
         }
 
-        GUILayout.Label("Grid Radius");
+        GUILayout.Label("Grid Radius", buttonStyle);
         int newGridSize = (int)Mathf.Round(GUILayout.HorizontalSlider(gridSize, 1f, 10f));
         if (gridSize != newGridSize) {
             gridSize = newGridSize;
@@ -94,8 +90,10 @@ public class PuzzleEditor : MonoBehaviour {
             grid.GenerateGrid(gridSize);
         }
 
-        aspectSelection = GUI.SelectionGrid(new Rect(10, 150, 280, 300), aspectSelection, aspects, 3);
+        AspectGrid.Instance.ShowAspectGrid();
 
         GUILayout.EndArea();
+
+        AspectGrid.Instance.ShowAspectTooltip();
     }
 }
