@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using static UnityEditor.PlayerSettings;
 
 public class GridController : MonoBehaviour {
     public GameObject prefab;
@@ -16,15 +14,10 @@ public class GridController : MonoBehaviour {
     }
 
     public void GenerateGrid(int gridSize, bool generateGraph = true) {
-        puzzleGraph = new();
+        puzzleGraph.Reset();
 
         List<Vector2Int> tilePositions = HexUtils.GenerateHexRing(gridSize);
         GenerateTiles(tilePositions);
-
-        if (generateGraph) {
-            puzzleGraph.BuildNeighbors();
-            puzzleGraph.UpdateConnections();
-        }
     }
 
     public void GenerateTiles(List<Vector2Int> tiles) {
@@ -67,16 +60,7 @@ public class GridController : MonoBehaviour {
                 Debug.Log($"Key not found in grid {tile.q}, {tile.r}");
             }
         }
-        puzzleGraph.BuildNeighbors();
-        UpdateConnections();
     }
-
-    void UpdateConnections() {
-        puzzleGraph.UpdateConnections();
-        // Go through the connections and build our dictionary
-
-    }
-
 
     public HexTile GetTileUnderMouse() {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -87,5 +71,9 @@ public class GridController : MonoBehaviour {
             }
         }
         return null;
+    }
+
+    public bool IsSolved() {
+        return puzzleGraph.AreAllLockedAspectsConnected();
     }
 }

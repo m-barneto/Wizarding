@@ -69,6 +69,7 @@ public static class HexUtils {
                 final.SetPixel(x + offsetX, y + offsetY, rendered.GetPixel(x, y));
 
         final.Apply();
+        final.hideFlags = HideFlags.DontUnloadUnusedAsset;
         return final;
     }
 }

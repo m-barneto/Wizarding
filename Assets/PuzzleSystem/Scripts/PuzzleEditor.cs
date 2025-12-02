@@ -27,8 +27,10 @@ public class PuzzleEditor : MonoBehaviour {
             if (tile) {
                 if (tile.aspect) {
                     grid.hexTiles[tile.axial].SetAspect(null);
+                    grid.hexTiles[tile.axial].SetLocked(false);
                 } else {
                     grid.hexTiles[tile.axial].SetAspect(AspectGrid.Instance.GetSelectedAspect());
+                    grid.hexTiles[tile.axial].SetLocked(true);
                 }
             }
         }

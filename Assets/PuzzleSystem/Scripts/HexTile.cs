@@ -23,7 +23,7 @@ public class HexTile : MonoBehaviour {
     public void SetAspect(Aspect aspect) {
         this.aspect = aspect;
         this.spriteRenderer.sprite = aspect == null ? null : aspect.icon;
-        this.SetLocked(aspect == null ? false : true);
+        this.graph.UpdateTileAspect(this);
     }
 
     public void SetLocked(bool locked) {

@@ -31,6 +31,7 @@ public class AspectGrid {
         }
         tooltipBackground.SetPixels(pixels);
         tooltipBackground.Apply();
+        tooltipBackground.hideFlags = HideFlags.DontUnloadUnusedAsset;
 
         tipStyle = new GUIStyle(GUI.skin.box);
         tipStyle.normal.textColor = Color.white;

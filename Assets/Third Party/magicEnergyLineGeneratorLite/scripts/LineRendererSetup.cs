@@ -11,13 +11,9 @@ namespace soulercoasterLite.scripts {
                 return;
             }
 
-            string[] guids2 = AssetDatabase.FindAssets("defaultLineMaterial t:material");
-            if (guids2.Length == 0) {
-                return;
-            }
+            Material mat = Resources.GetBuiltinResource<Material>("defaultLineMaterial t:material");
 
-            monoBehaviour.GetComponent<LineRenderer>().sharedMaterial =
-                AssetDatabase.LoadAssetAtPath<Material>(AssetDatabase.GUIDToAssetPath(guids2[0]));
+            monoBehaviour.GetComponent<LineRenderer>().sharedMaterial = mat;
             monoBehaviour.GetComponent<LineRenderer>().useWorldSpace = false;
         }
     }

@@ -33,7 +33,7 @@ public class PuzzlePlayer : MonoBehaviour {
             grid.LoadPuzzle(puzzle);
         }
 
-
+        GUILayout.Label("Is Solved: " + grid.IsSolved());
 
         AspectGrid.Instance.ShowAspectGrid();
 
@@ -44,8 +44,20 @@ public class PuzzlePlayer : MonoBehaviour {
 
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            // Attempt to place aspect
             HexTile tile = grid.GetTileUnderMouse();
+            if (tile) {
+                if (tile.aspect) {
+                    grid.hexTiles[tile.axial].SetAspect(null);
+                } else {
+                    grid.hexTiles[tile.axial].SetAspect(AspectGrid.Instance.GetSelectedAspect());
+                }
+            }
+        }
+        if (Input.GetMouseButtonDown(1)) {
+            HexTile tile = grid.GetTileUnderMouse();
+            if (tile) {
+                grid.hexTiles[tile.axial].SetAspect(null);
+            }
         }
     }
 }

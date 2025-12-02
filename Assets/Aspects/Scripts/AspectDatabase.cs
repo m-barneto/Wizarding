@@ -21,7 +21,7 @@ public class AspectDatabase : ScriptableObject {
 
     public bool CanLink(Aspect a, Aspect b) {
         // basic rule: aspects connect if they share a parent or are parent-child
-        if (a == b) return true;
+        if (a == b || a == null || b == null) return false;
         if (a.HasParent(b) || b.HasParent(a)) return true;
         if (a.parent1 == b || a.parent2 == b) return true;
         if (b.parent1 == a || b.parent2 == a) return true;
