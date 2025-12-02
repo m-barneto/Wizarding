@@ -8,6 +8,7 @@ public class HexTile : MonoBehaviour {
 
     SpriteRenderer spriteRenderer;
     Renderer tileRenderer;
+    Transform wisp;
 
     [SerializeField]
     Material lockedMaterial;
@@ -18,6 +19,7 @@ public class HexTile : MonoBehaviour {
     private void Awake() {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         tileRenderer = GetComponentInChildren<Renderer>();
+        wisp = GetComponentInChildren<Transform>();
     }
 
     public void SetAspect(Aspect aspect) {
