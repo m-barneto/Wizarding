@@ -1,7 +1,6 @@
 using SFB;
 using System.IO;
 using UnityEngine;
-using static ResearchPuzzle;
 
 public class PuzzleIO {
     public static string GameDataPath() {

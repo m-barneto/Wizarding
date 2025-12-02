@@ -1,5 +1,3 @@
-using System.Linq;
-using Unity.VectorGraphics;
 using UnityEngine;
 
 public class PuzzlePlayer : MonoBehaviour {

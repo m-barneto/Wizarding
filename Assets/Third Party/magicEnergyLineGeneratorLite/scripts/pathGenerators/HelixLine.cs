@@ -5,8 +5,8 @@ namespace soulercoasterLite.scripts.pathGenerators {
     [RequireComponent(typeof(LineRenderer))]
     public class HelixLine : MonoBehaviour {
         [Header("Generates a helix from origin to destination.")] 
-        public Vector3 origin;
-        public Vector3 destination;
+        public Transform origin;
+        public Transform destination;
         [Tooltip("Radius at the origin")]
         public float startRadius = 10;
         [Tooltip("Radius at the destination")]
@@ -29,9 +29,9 @@ namespace soulercoasterLite.scripts.pathGenerators {
 
         [ContextMenu("generate")]
         public void generate() {
-            var generalDirection = Vector3.Normalize(destination - origin);
-            var currentPointOnLine = origin;
-            var length = Vector3.Distance(origin, destination);
+            var generalDirection = Vector3.Normalize(destination.position - origin.position);
+            var currentPointOnLine = origin.position;
+            var length = Vector3.Distance(origin.position, destination.position);
 
             var i = 0;
             var points = new List<Vector3>();
@@ -43,9 +43,9 @@ namespace soulercoasterLite.scripts.pathGenerators {
             var stepSize = length / resolution;
             var helixFrequency = (360 / resolution)*rotations;
 
-            while (Vector3.Distance(currentPointOnLine, destination) > stepSize) {
+            while (Vector3.Distance(currentPointOnLine, destination.position) > stepSize) {
                 var circleVector = Quaternion.AngleAxis(i * helixFrequency , generalDirection) * perpendicular;
-                var radius = startRadius + (endRadius - startRadius) * ((length-Vector3.Distance(currentPointOnLine, destination)) / length);
+                var radius = startRadius + (endRadius - startRadius) * ((length-Vector3.Distance(currentPointOnLine, destination.position)) / length);
                 var nextPoint = currentPointOnLine + (generalDirection + circleVector * radius);
                 points.Add(nextPoint);
                 i++;

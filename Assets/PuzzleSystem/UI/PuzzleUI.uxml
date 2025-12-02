@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/PuzzleSystem/UI/PuzzleUI.uss?fileID=7433441132597879392&amp;guid=bd9168440d381cc4db468ffeaa08c6be&amp;type=3#PuzzleUI" />
+    <ui:VisualElement class="root" style="height: 100%; margin-top: 1%; margin-left: 1%; margin-bottom: 1%; width: 358px;">
+        <ui:VisualElement class="header">
+            <ui:Button text="Open Player" name="btnOpen" class="topButton" />
+            <ui:Button text="Load Puzzle" name="btnLoad" class="topButton" />
+            <ui:Button text="Save Puzzle As" name="btnSave" class="topButton" />
+            <ui:Label text="Grid Radius" name="lblGridRadius" class="label" />
+            <ui:VisualElement class="sliderRow">
+                <ui:Slider name="radiusSlider" low-value="1" high-value="10" show-input-field="false" enabled="true" style="width: 100%; min-height: 23px; padding-right: 4px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:ScrollView name="scroll" show-horizontal-scroller="false" show-vertical-scroller="false" enabled="true" vertical-scroller-visibility="Hidden" class="iconScroll">
+            <ui:VisualElement name="iconGrid" class="iconGrid" style="margin-top: 6px;" />
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>
