@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -5,15 +6,13 @@ using UnityEngine.UIElements;
 using static UnityEngine.UIElements.VisualElement;
 
 [RequireComponent(typeof(UIDocument))]
-public class PuzzlePlayerUI : MonoBehaviour {
+public class PuzzleUI : MonoBehaviour {
     [SerializeField]
     PuzzlePlayer puzzlePlayer;
 
     public Vector2 tooltipOffset = new Vector2(12, 18);
-    VisualElement tooltip;
-    Label tooltipLabel;
+    Label tooltip;
     bool tooltipVisible = false;
-    Image parentA, parentB;
 
     Texture2D[] icons;
     Material spriteMaterial;
@@ -34,12 +33,14 @@ public class PuzzlePlayerUI : MonoBehaviour {
         // find elements
         iconGrid = root.Q<VisualElement>("iconGrid");
 
-        tooltip = root.Q<VisualElement>("tooltip");
-        tooltipLabel = root.Q<Label>("tooltipLabel");
+        tooltip = new Label();
+        tooltip.AddToClassList("tooltip");
+        tooltip.style.position = Position.Absolute;
+        tooltip.style.display = DisplayStyle.None;
         tooltip.pickingMode = PickingMode.Ignore;
+        tooltip.style.unityTextAlign = TextAnchor.MiddleLeft;
 
-        parentA = tooltip.Q<Image>("parentA");
-        parentB = tooltip.Q<Image>("parentB");
+        root.Add(tooltip);
 
         // wire top buttons
         var btnOpen = root.Q<Button>("btnOpen");
@@ -74,7 +75,7 @@ public class PuzzlePlayerUI : MonoBehaviour {
             tile.clicked += () => OnIconClicked(tile, idx);
 
             // tooltip on hover
-            tile.RegisterCallback<PointerEnterEvent>(evt => ShowTooltip(AspectDatabase.Instance.aspects[idx], evt));
+            tile.RegisterCallback<PointerEnterEvent>(evt => ShowTooltip(AspectDatabase.Instance.aspects[idx].aspectName.FirstCharacterToUpper(), evt));
             tile.RegisterCallback<PointerLeaveEvent>(evt => HideTooltip());
             tile.RegisterCallback<PointerMoveEvent>(evt => {
                 if (tooltipVisible) {
@@ -88,14 +89,11 @@ public class PuzzlePlayerUI : MonoBehaviour {
         selectedTile = iconGrid[0];
     }
 
-    void ShowTooltip(Aspect aspect, PointerEnterEvent evt) {
+    void ShowTooltip(string text, PointerEnterEvent evt) {
         if (tooltip == null) return;
-        tooltipLabel.text = aspect.aspectName.FirstCharacterToUpper();
+        tooltip.text = text;
         tooltip.style.display = DisplayStyle.Flex;
         tooltipVisible = true;
-
-        parentA.style.backgroundImage = new StyleBackground(aspect.parent1?.icon);
-        parentB.style.backgroundImage = new StyleBackground(aspect.parent2?.icon);
 
         UpdateTooltip(evt.position);
     }
@@ -115,9 +113,9 @@ public class PuzzlePlayerUI : MonoBehaviour {
 
         // Sometimes resolvedStyle width is 0 before layout; use approximate measured size
         if (tooltipWidth <= 0)
-            tooltipWidth = tooltipLabel.MeasureTextSize(tooltipLabel.text, 0, MeasureMode.Undefined, 0, MeasureMode.Undefined).x + 12;
+            tooltipWidth = tooltip.MeasureTextSize(tooltip.text, 0, MeasureMode.Undefined, 0, MeasureMode.Undefined).x + 12;
         if (tooltipHeight <= 0)
-            tooltipHeight = tooltipLabel.MeasureTextSize(tooltipLabel.text, 0, MeasureMode.Undefined, 0, MeasureMode.Undefined).y + 8;
+            tooltipHeight = tooltip.MeasureTextSize(tooltip.text, 0, MeasureMode.Undefined, 0, MeasureMode.Undefined).y + 8;
 
         // Apply absolute position (panel coordinates map to root's style.left/top)
         tooltip.style.left = x;

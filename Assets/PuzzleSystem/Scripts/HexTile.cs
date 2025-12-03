@@ -22,14 +22,15 @@ public class HexTile : MonoBehaviour {
     public void SetAspect(Aspect aspect) {
         this.aspect = aspect;
         this.aspectSpriteRenderer.sprite = aspect?.icon;
+        this.aspectSpriteRenderer.material.SetColor("_EmissionColor", new Color(1f, 1f, 1f) * 5f);
         this.graph.UpdateTileAspect(this);
 
 
-        if (aspect == null) {
+        /*if (aspect == null) {
             this.transform.position = new Vector3(this.transform.position.x, 0f, this.transform.position.z);
         } else {
             this.transform.position = new Vector3(this.transform.position.x, -.19f, this.transform.position.z);
-        }
+        }*/
     }
 
     public void SetLocked(bool locked) {

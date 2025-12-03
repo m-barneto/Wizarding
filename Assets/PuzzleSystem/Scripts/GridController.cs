@@ -5,12 +5,10 @@ public class GridController : MonoBehaviour {
     public GameObject prefab;
     public Dictionary<Vector2Int, HexTile> hexTiles = new Dictionary<Vector2Int, HexTile>();
     AspectPuzzleGraph puzzleGraph;
-    Dictionary<(Vector2Int, Vector2Int), GameObject> connections;
-    Camera cam;
 
     private void Awake() {
-        cam = Camera.main;
         puzzleGraph = new();
+        cam = Camera.main;
     }
 
     public void GenerateGrid(int gridSize, bool generateGraph = true) {
@@ -62,6 +60,7 @@ public class GridController : MonoBehaviour {
         }
     }
 
+    Camera cam;
     public HexTile GetTileUnderMouse() {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 1000f)) {

@@ -9,5 +9,12 @@
         <ui:ScrollView name="scroll" show-horizontal-scroller="false" show-vertical-scroller="false" enabled="true" vertical-scroller-visibility="Hidden" class="iconScroll">
             <ui:VisualElement name="iconGrid" class="iconGrid" style="margin-top: 6px;" />
         </ui:ScrollView>
+        <ui:VisualElement name="tooltip" class="tooltip">
+            <ui:VisualElement name="parent-icons" class="parent-icons">
+                <ui:Image name="parentA" class="parent-icon"/>
+                <ui:Image name="parentB" class="parent-icon"/>
+            </ui:VisualElement>
+            <ui:Label name="tooltipLabel" class="tooltip-label"/>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

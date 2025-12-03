@@ -78,6 +78,6 @@ public class PuzzlePlayer : MonoBehaviour {
         this.enabled = false;
 
         puzzleEditorUI.gameObject.SetActive(true);
-        puzzleEditorUI.enabled = true;
+        puzzleEditor.enabled = true;
     }
 }

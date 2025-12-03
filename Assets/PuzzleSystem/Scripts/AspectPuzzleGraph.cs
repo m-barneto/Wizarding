@@ -56,10 +56,10 @@ public class AspectPuzzleGraph {
 
         obj.transform.position = (a.tile.transform.position + b.tile.transform.position) / 2f;
 
-        var lr = obj.AddComponent<LineRenderer>();
-        lr.material = Resources.Load<Material>("Materials/Connection Material");
-        lr.SetPosition(0, a.tile.transform.position + Vector3.up * 0.01f);
-        lr.SetPosition(1, b.tile.transform.position + Vector3.up * 0.01f);
+        AspectPuzzleEdge edge = obj.AddComponent<AspectPuzzleEdge>();
+        edge.a = a;
+        edge.b = b;
+        edge.SetLineRendererPositions();
 
         return obj;
     }
