@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class PuzzleEditor : MonoBehaviour {
     [SerializeField]
-    PuzzleUI puzzleUI;
+    PuzzleEditorUI puzzleEditorUI;
+    [SerializeField]
+    PuzzlePlayerUI puzzlePlayerUI;
 
     ResearchPuzzle puzzle = null;
     GridController grid;
     int gridSize = 4;
-    Camera cam;
     PuzzlePlayer puzzlePlayer;
 
     private void Awake() {
         grid = GetComponent<GridController>();
         grid.GenerateGrid(gridSize);
-        cam = Camera.main;
         puzzlePlayer = GetComponent<PuzzlePlayer>();
     }
 
@@ -24,9 +24,11 @@ public class PuzzleEditor : MonoBehaviour {
                 if (tile.aspect) {
                     grid.hexTiles[tile.axial].SetAspect(null);
                     grid.hexTiles[tile.axial].SetLocked(false);
+                    grid.hexTiles[tile.axial].ShowWisp(false);
                 } else {
-                    grid.hexTiles[tile.axial].SetAspect(puzzleUI.GetSelectedAspect());
+                    grid.hexTiles[tile.axial].SetAspect(puzzleEditorUI.GetSelectedAspect());
                     grid.hexTiles[tile.axial].SetLocked(true);
+                    grid.hexTiles[tile.axial].ShowWisp(true);
                 }
             }
         }
@@ -86,7 +88,10 @@ public class PuzzleEditor : MonoBehaviour {
     }
 
     public void OpenPlayer() {
+        puzzleEditorUI.gameObject.SetActive(false);
         this.enabled = false;
+
+        puzzlePlayerUI.gameObject.SetActive(true);
         puzzlePlayer.enabled = true;
     }
 

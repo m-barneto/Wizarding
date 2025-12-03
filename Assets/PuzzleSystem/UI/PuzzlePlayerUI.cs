@@ -6,10 +6,7 @@ using UnityEngine.UIElements;
 using static UnityEngine.UIElements.VisualElement;
 
 [RequireComponent(typeof(UIDocument))]
-public class PuzzleUI : MonoBehaviour {
-    [SerializeField]
-    PuzzleEditor puzzleEditor;
-
+public class PuzzlePlayerUI : MonoBehaviour {
     [SerializeField]
     PuzzlePlayer puzzlePlayer;
 
@@ -22,8 +19,6 @@ public class PuzzleUI : MonoBehaviour {
 
     UIDocument doc;
     VisualElement iconGrid;
-    Label radiusValue;
-    Slider radiusSlider;
 
     Aspect selectedAspect;
     VisualElement selectedTile;
@@ -37,9 +32,6 @@ public class PuzzleUI : MonoBehaviour {
         var root = doc.rootVisualElement;
         // find elements
         iconGrid = root.Q<VisualElement>("iconGrid");
-        radiusValue = root.Q<Label>("lblGridRadius");
-        radiusSlider = root.Q<Slider>("radiusSlider");
-        radiusSlider.value = puzzleEditor.GetGridRadius();
 
         tooltip = new Label();
         tooltip.AddToClassList("tooltip");
@@ -50,26 +42,14 @@ public class PuzzleUI : MonoBehaviour {
 
         root.Add(tooltip);
 
-        if (radiusSlider != null && radiusValue != null) {
-            radiusSlider.RegisterValueChangedCallback(evt => {
-                int val = Mathf.RoundToInt(evt.newValue);
-                radiusValue.text = $"Grid Radius: {val.ToString()}";
-                radiusSlider.value = val;
-                puzzleEditor.SetGridRadius(val);
-            });
-            radiusValue.text = $"Grid Radius: {Mathf.RoundToInt(radiusSlider.value).ToString()}";
-        }
-
         // wire top buttons
         var btnOpen = root.Q<Button>("btnOpen");
         var btnLoad = root.Q<Button>("btnLoad");
         var btnSave = root.Q<Button>("btnSave");
-        if (btnOpen != null) btnOpen.clicked += () => puzzleEditor.OpenPlayer();
+        if (btnOpen != null) btnOpen.clicked += () => puzzlePlayer.OpenEditor();
         if (btnLoad != null) btnLoad.clicked += () => {
-            puzzleEditor.LoadPuzzle();
-            radiusSlider.value = puzzleEditor.GetGridRadius();
+            puzzlePlayer.LoadPuzzle();
         };
-        if (btnSave != null) btnSave.clicked += () => puzzleEditor.SavePuzzle();
 
         // populate icon grid
         PopulateGrid();

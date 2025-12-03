@@ -52,10 +52,14 @@ public class AspectPuzzleGraph {
     }
 
     private GameObject SpawnEdgeObject(HexTileNode a, HexTileNode b) {
-        var obj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        obj.name = $"Edge {a.tile.axial} <-> {b.tile.axial}";
+        var obj = new GameObject($"Edge {a.tile.axial} <-> {b.tile.axial}");
 
         obj.transform.position = (a.tile.transform.position + b.tile.transform.position) / 2f;
+
+        var lr = obj.AddComponent<LineRenderer>();
+        lr.material = Resources.Load<Material>("Materials/Connection Material");
+        lr.SetPosition(0, a.tile.transform.position + Vector3.up * 0.01f);
+        lr.SetPosition(1, b.tile.transform.position + Vector3.up * 0.01f);
 
         return obj;
     }

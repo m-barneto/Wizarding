@@ -55,7 +55,7 @@ public class GridController : MonoBehaviour {
             if (hexTiles.ContainsKey(tilePos)) {
                 hexTiles[tilePos].SetAspect(tile.aspectId.Length == 0 ? null : AspectDatabase.Instance.GetByName(tile.aspectId));
                 hexTiles[tilePos].SetLocked(tile.locked);
-
+                hexTiles[tilePos].ShowWisp(true);
             } else {
                 Debug.Log($"Key not found in grid {tile.q}, {tile.r}");
             }

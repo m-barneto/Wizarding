@@ -1,7 +1,14 @@
 using UnityEngine;
 
 public class PuzzlePlayer : MonoBehaviour {
+    [SerializeField]
+    PuzzleEditorUI puzzleEditorUI;
+    [SerializeField]
+    PuzzlePlayerUI puzzlePlayerUI;
+
+
     PuzzleEditor puzzleEditor;
+
     ResearchPuzzle puzzle;
     GridController grid;
 
@@ -12,6 +19,7 @@ public class PuzzlePlayer : MonoBehaviour {
     }
 
     private void OnGUI() {
+        return;
         GUIStyle myStyle = new GUIStyle(GUI.skin.button);
         myStyle.contentOffset = new Vector2(15, 15);
 
@@ -47,7 +55,7 @@ public class PuzzlePlayer : MonoBehaviour {
                 if (tile.aspect) {
                     grid.hexTiles[tile.axial].SetAspect(null);
                 } else {
-                    grid.hexTiles[tile.axial].SetAspect(AspectGrid.Instance.GetSelectedAspect());
+                    grid.hexTiles[tile.axial].SetAspect(puzzlePlayerUI.GetSelectedAspect());
                 }
             }
         }
@@ -57,5 +65,19 @@ public class PuzzlePlayer : MonoBehaviour {
                 grid.hexTiles[tile.axial].SetAspect(null);
             }
         }
+    }
+
+    public void LoadPuzzle() {
+        puzzle = PuzzleIO.LoadPuzzle();
+        // Check if puzzle is null before actually loading into editor
+        grid.LoadPuzzle(puzzle);
+    }
+
+    public void OpenEditor() {
+        puzzlePlayerUI.gameObject.SetActive(false);
+        this.enabled = false;
+
+        puzzleEditorUI.gameObject.SetActive(true);
+        puzzleEditorUI.enabled = true;
     }
 }

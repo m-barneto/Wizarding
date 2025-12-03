@@ -6,25 +6,22 @@ public class HexTile : MonoBehaviour {
     public bool locked;
     public AspectPuzzleGraph graph;
 
-    SpriteRenderer spriteRenderer;
-    Renderer tileRenderer;
-    Transform wisp;
+    [SerializeField]
+    SpriteRenderer aspectSpriteRenderer;
+    [SerializeField]
+    Renderer tileMaterialRenderer;
+
+    [SerializeField]
+    SpriteRenderer wispSpriteRenderer;
 
     [SerializeField]
     Material lockedMaterial;
     [SerializeField]
     Material unlockedMaterial;
 
-
-    private void Awake() {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        tileRenderer = GetComponentInChildren<Renderer>();
-        wisp = GetComponentInChildren<Transform>();
-    }
-
     public void SetAspect(Aspect aspect) {
         this.aspect = aspect;
-        this.spriteRenderer.sprite = aspect?.icon;
+        this.aspectSpriteRenderer.sprite = aspect?.icon;
         this.graph.UpdateTileAspect(this);
 
 
@@ -37,7 +34,11 @@ public class HexTile : MonoBehaviour {
 
     public void SetLocked(bool locked) {
         this.locked = locked;
-        tileRenderer.material = locked ? lockedMaterial : unlockedMaterial;        
+        tileMaterialRenderer.material = locked ? lockedMaterial : unlockedMaterial;        
+    }
+
+    public void ShowWisp(bool showWisp) {
+        this.wispSpriteRenderer.enabled = showWisp;
     }
 
     public ResearchPuzzle.TileData TileData() {

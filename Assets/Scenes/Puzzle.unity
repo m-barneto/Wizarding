@@ -377,6 +377,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1081910141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1081910144}
+  - component: {fileID: 1081910142}
+  - component: {fileID: 1081910143}
+  m_Layer: 0
+  m_Name: Puzzle Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1081910142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081910141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 5bccb977f204576459761514f40b9d40, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: cd1ba88f470437042807576e2b0b6dd2, type: 3}
+  m_SortingOrder: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+--- !u!114 &1081910143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081910141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1def53d921858648a7bc09284e14498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzlePlayer: {fileID: 1209112893}
+  tooltipOffset: {x: 12, y: 18}
+--- !u!4 &1081910144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081910141}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1209112888
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +502,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6067a9e4e1c9d04c80d2b4c1e281887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleUI: {fileID: 1881678552}
+  puzzleEditorUI: {fileID: 1881678552}
+  puzzlePlayerUI: {fileID: 1081910143}
 --- !u!114 &1209112893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +516,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e1fb8b3021d0f4e89c28d66d604d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzleEditorUI: {fileID: 1881678552}
+  puzzlePlayerUI: {fileID: 1081910143}
 --- !u!1 &1881678549
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +530,7 @@ GameObject:
   - component: {fileID: 1881678550}
   - component: {fileID: 1881678552}
   m_Layer: 5
-  m_Name: Puzzle UI
+  m_Name: Puzzle Editor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -514,7 +583,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzleEditor: {fileID: 1209112892}
-  puzzlePlayer: {fileID: 1209112893}
   tooltipOffset: {x: 12, y: 18}
 --- !u!1 &1987201769
 GameObject:
@@ -631,6 +699,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 2322754}
   - {fileID: 836603264}
-  - {fileID: 1209112889}
   - {fileID: 1987201773}
+  - {fileID: 1209112889}
   - {fileID: 1881678551}
+  - {fileID: 1081910144}

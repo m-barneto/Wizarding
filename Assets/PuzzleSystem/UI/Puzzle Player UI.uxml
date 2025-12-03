@@ -1,0 +1,13 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/PuzzleSystem/UI/Puzzle%20UI.uss?fileID=7433441132597879392&amp;guid=bd9168440d381cc4db468ffeaa08c6be&amp;type=3#Puzzle UI" />
+    <ui:VisualElement class="root" style="height: 100%; margin-top: 1%; margin-left: 1%; margin-bottom: 1%; width: 358px;">
+        <ui:VisualElement class="header">
+            <ui:Button text="Open Editor" name="btnOpen" class="topButton" />
+            <ui:Button text="Load Puzzle" name="btnLoad" class="topButton" />
+            <ui:VisualElement class="sliderRow" />
+        </ui:VisualElement>
+        <ui:ScrollView name="scroll" show-horizontal-scroller="false" show-vertical-scroller="false" enabled="true" vertical-scroller-visibility="Hidden" class="iconScroll">
+            <ui:VisualElement name="iconGrid" class="iconGrid" style="margin-top: 6px;" />
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>
