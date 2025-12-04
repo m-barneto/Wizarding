@@ -25,7 +25,8 @@ public class PuzzleEditorUI : MonoBehaviour {
     Aspect selectedAspect;
     VisualElement selectedTile;
 
-    void Awake() {
+    void OnEnable() {
+        //Debug.Log("Balls editor");
         spriteMaterial = Resources.Load<Material>("Materials/Aspect Grid Icon Material");
         icons = AspectDatabase.Instance.aspects.Select(x => HexUtils.RenderSpritePreserveAspect(x.icon, 64, spriteMaterial)).ToArray();
         selectedAspect = AspectDatabase.Instance.aspects[0];
@@ -68,8 +69,10 @@ public class PuzzleEditorUI : MonoBehaviour {
         };
         if (btnSave != null) btnSave.clicked += () => puzzleEditor.SavePuzzle();
 
+        //Debug.Log("Balls editor before grid");
         // populate icon grid
         PopulateGrid();
+        //Debug.Log("Balls editor after grid");
     }
 
     void PopulateGrid() {

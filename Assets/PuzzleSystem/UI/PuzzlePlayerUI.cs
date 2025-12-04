@@ -25,7 +25,8 @@ public class PuzzlePlayerUI : MonoBehaviour {
     Aspect selectedAspect;
     VisualElement selectedTile;
 
-    void Awake() {
+    void OnEnable() {
+        //Debug.Log("Balls player");
         spriteMaterial = Resources.Load<Material>("Materials/Aspect Grid Icon Material");
         icons = AspectDatabase.Instance.aspects.Select(x => HexUtils.RenderSpritePreserveAspect(x.icon, 64, spriteMaterial)).ToArray();
         selectedAspect = AspectDatabase.Instance.aspects[0];
