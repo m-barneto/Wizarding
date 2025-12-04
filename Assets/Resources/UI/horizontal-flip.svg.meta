@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f82eb18dc54e4394ab4570748a47719d
+guid: cc5699970d1336b40ae2f2d55b070083
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -10,7 +10,7 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: a57477913897c46af95d590f580878bd, type: 3}
   svgType: 1
   texturedSpriteMeshType: 0
-  svgPixelsPerUnit: 64
+  svgPixelsPerUnit: 100
   gradientResolution: 64
   alignment: 0
   customPivot: {x: 0, y: 0}
@@ -28,12 +28,12 @@ ScriptedImporter:
   maxTangentAngleEnabled: 0
   maxTangentAngle: 5
   keepTextureAspectRatio: 1
-  textureSize: 512
+  textureSize: 256
   textureWidth: 256
   textureHeight: 256
-  wrapMode: 1
+  wrapMode: 0
   filterMode: 1
-  sampleCount: 1
+  sampleCount: 4
   preserveSVGImageAspect: 0
   useSVGPixelsPerUnit: 0
   spriteData:
@@ -51,5 +51,5 @@ ScriptedImporter:
         y: 0
         width: 0
         height: 0
-      spriteID: 7af1d26386b63da4dbbc88adf128bd1c
+      spriteID: 043acff2d94082c4489304a26ce95f4b
     PhysicsOutlines: []

@@ -7,6 +7,8 @@
     --tile-size: 56px;
     --tile-gap: 6px;
     --corner: 6px;
+    --icon-border: rgb(107, 84, 64);
+    --icon-bg: rgb(59, 47, 40);
 }
 
 .root {
@@ -78,17 +80,17 @@
     height: var(--tile-size);
     border-radius: 6px;
     border-width: 2px;
-    border-color: rgb(107, 84, 64);
-    background-color: rgb(59, 47, 40);
+    border-color: var(--icon-border);
+    background-color: var(--icon-bg);
     align-items: center;
     justify-content: center;
     padding: 6px;
 }
 
 .iconTile-selected {
-    border-color: #e5d2a8;
-    background-color: #4b3b2f;
-    text-shadow: 0 0 6px rgba(255,255,200,0.5);
+    border-color: rgb(229, 210, 168);
+    background-color: rgb(75, 59, 47);
+    text-shadow: 0 0 6px rgba(255, 255, 200, 0.5);
 }
 
 .iconTile > .iconImage {
@@ -105,14 +107,13 @@
 .tooltip {
     position: absolute;
     display: none;
-    -unity-text-align: middle-left;
-
-    padding: 2px 4px;
+    -unity-text-align: middle-center;
+    padding: 2px;
     border-radius: 4px;
-    border-width: 1px;
-    border-color: #3b2f28;
-    background-color: rgba(20, 20, 20, 0.9);
-    color: #f5f1e6;
+    border-width: 2px;
+    border-color: var(--icon-border);
+    background-color: var(--icon-bg);
+    color: rgb(245, 241, 230);
     -unity-font-style: Bold;
     font-size: 12px;
     max-width: 260px;
@@ -123,13 +124,11 @@
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    margin: 0 -10px;
 }
 
 .parent-icon {
-    padding: 4px;
     width: 32px;
     height: 32px;
-    margin: 0 10px;
     -unity-background-scale-mode: scale-to-fit;
+    margin: 2px;
 }

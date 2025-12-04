@@ -13,7 +13,8 @@ public class PuzzlePlayerUI : MonoBehaviour {
     VisualElement tooltip;
     Label tooltipLabel;
     bool tooltipVisible = false;
-    Image parentA, parentB;
+    Image parentA, parentB, parentAdd;
+    VisualElement parentContainer;
 
     Texture2D[] icons;
     Material spriteMaterial;
@@ -38,8 +39,11 @@ public class PuzzlePlayerUI : MonoBehaviour {
         tooltipLabel = root.Q<Label>("tooltipLabel");
         tooltip.pickingMode = PickingMode.Ignore;
 
+        parentContainer = tooltip.Q<VisualElement>("parent-icons");
         parentA = tooltip.Q<Image>("parentA");
         parentB = tooltip.Q<Image>("parentB");
+        parentAdd = tooltip.Q<Image>("parentAdd");
+        parentAdd.style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("UI/horizontal-flip"));
 
         // wire top buttons
         var btnOpen = root.Q<Button>("btnOpen");
@@ -96,6 +100,18 @@ public class PuzzlePlayerUI : MonoBehaviour {
 
         parentA.style.backgroundImage = new StyleBackground(aspect.parent1?.icon);
         parentB.style.backgroundImage = new StyleBackground(aspect.parent2?.icon);
+
+        if (aspect.IsPrimal) {
+            parentContainer.style.display = DisplayStyle.None;
+            parentA.visible = false;
+            parentB.visible = false;
+            parentAdd.visible = false;
+        } else {
+            parentContainer.style.display = DisplayStyle.Flex;
+            parentA.visible = true;
+            parentB.visible = true;
+            parentAdd.visible = true;
+        }
 
         UpdateTooltip(evt.position);
     }
